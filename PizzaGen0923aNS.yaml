@@ -32,7 +32,7 @@ spec:
     transport: CloudInit
 ---
 apiVersion: v1
-kind: secret
+kind: Secret
 metadata:
   name:      my-vm-bootstrap-data
   namespace: sdwan
