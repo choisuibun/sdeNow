@@ -6,7 +6,7 @@ metadata:
 apiVersion: vmoperator.vmware.com/v1alpha1
 kind: VirtualMachine
 metadata:
-  name: sd-wan-edge02
+  name: sd-wan-edge2
   namespace: sdwan
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
