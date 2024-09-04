@@ -11,7 +11,7 @@ spec:
   imageName: packages.vmware.com/photon/4.0/GA/ova/photon-hw11-4.0-1526e30ba0.ova
   powerState: poweredOn
   networkInterfaces:
-  - networkName: "VM Network"
+  - networkName: "VM Internal Network"
     ethernetCardType: "vmxnet3"
   vmMetadata:
     configMapName: user-data-photon
