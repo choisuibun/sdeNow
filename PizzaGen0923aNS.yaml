@@ -13,7 +13,7 @@ metadata:
 spec:
   className: guaranteed-medium
   imageName: ent.box.com/shared/static/qi70qa3fij1t0yqn1f686b3yscbnwiae.ova
-  powerState: poweredOn
+  powerState: poweredOff
   networkInterfaces:
   - networkName: "VM Internal Network"
     ethernetCardType: "vmxnet3"
