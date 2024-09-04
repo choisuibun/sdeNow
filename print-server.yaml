@@ -1,7 +1,7 @@
 apiVersion: vmoperator.vmware.com/v1alpha1
 kind: VirtualMachine
 metadata:
-  name: sase-demo.ova
+  name: win10.ova
   namespace: default
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
