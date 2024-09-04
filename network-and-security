@@ -1,0 +1,96 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sdwan
+---  
+apiVersion: vmoperator.vmware.com/v1alpha1
+kind: VirtualMachine
+metadata:
+  name: sd-wan-edge1
+  namespace: sdwan
+  annotations:
+    vmoperator.vmware.com/image-supported-check: disable
+spec:
+  className: guaranteed-medium
+  imageName: ent.box.com/shared/static/qi70qa3fij1t0yqn1f686b3yscbnwiae.ova
+  powerState: poweredOff
+  networkInterfaces:
+  - networkName: "VM Internal Network"
+    ethernetCardType: "vmxnet3"
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+  vmMetadata:
+    secretName: my-vm-bootstrap-data
+    transport: CloudInit
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name:      my-vm-bootstrap-data
+  namespace: sdwan
+stringData:
+  user-data: |
+    #cloud-config
+    password: velocloud
+    chpasswd: { expire: False }
+    ssh_pwauth: True
+    velocloud:
+      vce: 
+            vco: apiVersion: v1
+kind: Namespace
+metadata:
+  name: sdwan
+---  
+apiVersion: vmoperator.vmware.com/v1alpha1
+kind: VirtualMachine
+metadata:
+  name: sd-wan-edge1
+  namespace: sdwan
+  annotations:
+    vmoperator.vmware.com/image-supported-check: disable
+spec:
+  className: guaranteed-medium
+  imageName: ent.box.com/shared/static/qi70qa3fij1t0yqn1f686b3yscbnwiae.ova
+  powerState: poweredOff
+  networkInterfaces:
+  - networkName: "VM Internal Network"
+    ethernetCardType: "vmxnet3"
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+  vmMetadata:
+    secretName: my-vm-bootstrap-data
+    transport: CloudInit
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name:      my-vm-bootstrap-data
+  namespace: sdwan
+stringData:
+  user-data: |
+    #cloud-config
+    password: velocloud
+    chpasswd: { expire: False }
+    ssh_pwauth: True
+    velocloud:
+      vce: 
+            vco: velocloud.sst.net.cn
+            activation_code: CPSB-XNEZ-R36H-46DS
+            vco_ignore_cert_errors: true 
+
