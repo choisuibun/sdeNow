@@ -1,3 +1,6 @@
+Company Logo
+vswitch1.yaml
+
 apiVersion: esx.vmware.com/v1alpha1
 kind: HostConfiguration
 metadata:
@@ -11,14 +14,61 @@ spec:
             "network_vss": {
                 "switches": [
                     {
-                        "name": "INTERNAL NET1",
+                        "name": "vSwitch0",
+                        "bridge": {
+                            "link_discovery_protocol": {
+                                "protocol": "CDP",
+                                "operation": "LISTEN"
+                            },
+                            "nics": ["vmnic0"]
+                        },
+                        "port_groups": [
+                            {
+                                "name": "Management Network",
+                                "vlan_id": 0,
+                                "policy": {
+                                    "nic_teaming": {
+                                        "policy": "LOADBALANCE_SRCID",
+                                        "notify_switches": true,
+                                        "rolling_order": false,
+                                        "link_criteria_beacon": "IGNORE",
+                                        "active_nics": ["vmnic0"],
+                                        "standby_nics": []
+                                    }
+                                }
+                            },
+                            {
+                                "name": "VM Network",
+                                "vlan_id": 0
+                            }
+                        ],
                         "policy": {
                             "nic_teaming": {
                                 "policy": "LOADBALANCE_SRCID",
                                 "notify_switches": true,
                                 "rolling_order": false,
                                 "link_criteria_beacon": "IGNORE",
-                                "active_nics": [],
+                                "active_nics": ["vmnic0"],
+                                "standby_nics": []
+                            },
+                            "security": {
+                                "allow_promiscuous": false,
+                                "mac_changes": false,
+                                "forged_transmits": false
+                            }
+                        }
+                    },
+                    {
+                        "name": "vSwitch1",
+                        "policy": {
+                            "nic_teaming": {
+                                "policy": "LOADBALANCE_SRCID",
+                                "notify_switches": true,
+                                "rolling_order": false,
+                                "link_criteria_beacon": "IGNORE",
+                                "active_nics": [
+                           
+                                ],
                                 "standby_nics": []
                             },
                             "security": {
@@ -35,13 +85,15 @@ spec:
                                 "protocol": "CDP",
                                 "operation": "LISTEN"
                             },
-                            "nics": []
+                            "nics": [
+                       
+                            ]
                         },
                         "num_ports": 1024,
                         "mtu": 1500,
                         "port_groups": [
                             {
-                                "name": "LAN 1",
+                                "name": "VM Network 16",
                                 "vlan_id": 0
                             }
                         ]
