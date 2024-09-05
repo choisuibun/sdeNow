@@ -48,7 +48,7 @@ data:
       front_road:
         ffmpeg:
           inputs:
-            - path: rstp://sdenow:sderightnow@192.168.50.119:554/stream1
+            - path: rtsp://sdenow:sderightnow@192.168.50.119:554/stream1
               roles:
                 - detect
                 - rtmp
