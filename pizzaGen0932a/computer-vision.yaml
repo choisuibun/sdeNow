@@ -38,9 +38,6 @@ data:
       cpu1:
         type: cpu
 
-    detect:
-      enabled:True
-      model: "handbag_model"
     objects:
       track:
         - person
@@ -49,18 +46,11 @@ data:
 
     cameras:
       front_road:
-        fps: 5
-        detect:
-           enabled: True
-           track:
-             - Backpack
-             - Handbag
-        min_scores: 0.5
         ffmpeg:
           inputs:
             - path: rtsp://sdenow:sde12345@192.168.50.119:554/stream1
               roles:
-                - detect
+                - record
                 - rtmp
 
 ---
