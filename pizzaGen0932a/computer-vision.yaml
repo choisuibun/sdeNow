@@ -41,7 +41,8 @@ data:
     objects:
       track:
         - person
-        - car
+        - Handbag
+        - Backpack
 
     cameras:
       front_road:
