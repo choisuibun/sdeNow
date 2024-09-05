@@ -42,7 +42,6 @@ data:
       track:
         - person
         - car
-        - bicycle
 
     cameras:
       front_road:
