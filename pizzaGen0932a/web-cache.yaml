@@ -1,0 +1,28 @@
+apiVersion: vmoperator.vmware.com/v1alpha1
+kind: VirtualMachine
+metadata:
+  name: squid
+  namespace: webcache
+  annotations:
+    vmoperator.vmware.com/image-supported-check: disable
+spec:
+  className: best-effort-small
+  imageName: ent.box.com/shared/static/6hn0b6i5zir1ndp5io8p7q8mjnao5i7q.ova
+  powerState: poweredOff
+  networkInterfaces:
+  - networkName: "VM Internal Network"
+    ethernetCardType: "vmxnet3"
+  vmMetadata:
+    configMapName: user-data-windows-1
+    transport: CloudInit
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: user-data-windows-1
+    namespace: webcache
+data:
+  user-data: |
+    #ps1
+    Install-WindowsFeature -Name Print-Server
+    Restart-Computer
