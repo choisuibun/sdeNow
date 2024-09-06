@@ -103,6 +103,3 @@ data:
     acl localnet src 192.168.50.0/24  # Adjust this ACL as needed
     http_access allow localnet
     http_access deny all
-    cache_mem 128 MB  # Limit the amount of memory used for caching
-    maximum_object_size 4 MB  # Limit the maximum size of cached objects
-    cache_dir ufs /var/cache/squid 10000 16 256  # Adjust cache size as needed
