@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
         - name: squid
-          image: scbunn/squid:latest  # You can also use another image like sameersbn/squid
+          image: sameersbn/squid  # You can also use another image like sameersbn/squid/scbunn/squid:latest
           ports:
             - containerPort: 3128
           volumeMounts:
