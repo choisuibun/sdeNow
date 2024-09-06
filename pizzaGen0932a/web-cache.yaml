@@ -38,7 +38,7 @@ spec:
               memory: "256Mi"  # Minimum memory required
               cpu: "500m"      # Minimum CPU required
             limits:
-              memory: "512Mi"  # Maximum memory allowed
+              memory: "384Mi"  # Maximum memory allowed
               cpu: "1"         # Maximum CPU allowed
       volumes:
         - name: squid-cache
