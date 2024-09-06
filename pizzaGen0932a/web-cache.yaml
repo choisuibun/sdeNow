@@ -6,6 +6,20 @@ metadata:
 ---
 
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: squid-cache-pv
+spec:
+  capacity:
+    storage: 1Gi  # Match this with your PVC request
+  accessModes:
+    - ReadWriteOnce
+  hostPath:  # Use hostPath for local testing; replace with your storage type for production
+    path: /mnt/data/squid-cache  # Ensure this path exists on your host
+
+---
+
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: squid-cache-pvc
