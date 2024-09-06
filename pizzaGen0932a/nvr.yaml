@@ -18,7 +18,7 @@ spec:
       args: [
         "-i", "rtsp://sdenow:sde12345@192.168.50.119/stream1",  # Replace with your RTSP stream URL
         "-c:v", "copy",                       # Copy the video codec
-        "-c:a", "copy",                       # Copy the audio codec
+        "-c:a", "aac",                       # Copy the audio codec
         "-f", "segment",                      # Use segment format for output
         "-segment_time", "3600",              # Segment duration in seconds (1 hour)
         "-reset_timestamps", "1",             # Reset timestamps for each segment
