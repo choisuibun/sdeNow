@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
         - name: squid
-          image: sameersbn/squid  # You can also use another image like sameersbn/squid/scbunn/squid:latest
+          image: scbunn/squid:latest  # You can also use another image like sameersbn/squid
           ports:
             - containerPort: 3128
           volumeMounts:
@@ -105,3 +105,5 @@ data:
     http_access deny all
     # Add cache settings to limit memory usage
     cache_dir ufs /var/cache/squid 10000 16 256  # Adjust cache size as needed
+    cache_mem 128 MB  # Limit the amount of memory used for caching
+    maximum_object_size 4 MB  # Limit the maximum size of cached objects
