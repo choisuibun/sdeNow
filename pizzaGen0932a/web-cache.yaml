@@ -11,7 +11,7 @@ metadata:
   name: squid-cache-pv
 spec:
   capacity:
-    storage: 1Gi  # Match this with your PVC request
+    storage: 32Gi  # Match this with your PVC request
   accessModes:
     - ReadWriteOnce
   hostPath:  # Use hostPath for local testing; replace with your storage type for production
@@ -29,7 +29,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi  # Adjust the storage size as needed
+      storage: 32Gi  # Adjust the storage size as needed
 
 ---
 
