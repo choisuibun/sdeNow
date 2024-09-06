@@ -63,9 +63,9 @@ spec:
               subPath: squid.conf
           resources:
             requests:
-              memory: "512Mi"  # Minimum memory required
+              memory: "4Gi"  # Minimum memory required
             limits:
-              memory: "1Gi"    # Maximum memory allowed
+              memory: "5Gi"    # Maximum memory allowed
       volumes:
         - name: squid-cache
           persistentVolumeClaim:
