@@ -1,7 +1,15 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: squid-namespace  # Define a namespace for your resources
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: squid
+  namespace: squid-namespace
   labels:
     app: squid
 spec:
@@ -36,6 +44,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: squid-service
+  namespace: squid-namespace
 spec:
   type: NodePort
   ports:
@@ -49,6 +58,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: squid-config
+  namespace: squid-namespace 
 data:
   squid.conf: |
     http_port 3128
