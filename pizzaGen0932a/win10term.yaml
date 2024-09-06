@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nvr
+  name: windows
 ---
 apiVersion: vmoperator.vmware.com/v1alpha1
 kind: VirtualMachine
 metadata:
-  name: bi-nvr
-  namespace: nvr
+  name: win-10-term
+  namespace: windows
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
 spec:
@@ -25,7 +25,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
     name: user-data-windows-1
-    namespace: nvr
+    namespace: windows
 data:
   user-data: |
     #ps1
