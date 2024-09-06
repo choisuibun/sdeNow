@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
         - name: squid
-          image: scbunn/squid:latest  # Use the latest Squid image
+          image: sameersbn/squid:latest  # Use a stable Squid image
           ports:
             - containerPort: 3128
           volumeMounts:
@@ -63,9 +63,9 @@ spec:
               subPath: squid.conf
           resources:
             requests:
-              memory: "6Gi"  # Increased minimum memory required
+              memory: "4Gi"  # Minimum memory required
             limits:
-              memory: "7Gi"    # Increased maximum memory allowed
+              memory: "5Gi"    # Maximum memory allowed
       volumes:
         - name: squid-cache
           persistentVolumeClaim:
@@ -103,7 +103,6 @@ data:
     acl localnet src 192.168.50.0/24  # Adjust this ACL as needed
     http_access allow localnet
     http_access deny all
-    # Add cache settings to limit memory usage
-    cache_dir ufs /var/cache/squid 10000 16 256  # Adjust cache size as needed
     cache_mem 128 MB  # Limit the amount of memory used for caching
     maximum_object_size 4 MB  # Limit the maximum size of cached objects
+    cache_dir ufs /var/cache/squid 10000 16 256  # Adjust cache size as needed
