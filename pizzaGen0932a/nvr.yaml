@@ -16,7 +16,7 @@ spec:
       image: jrottenberg/ffmpeg:latest
       command: ["ffmpeg"]
       args: [
-        "-loglevel", "debug",               # Set log level to debug
+        "-loglevel", "error",               # Set log level to error
         "-i", "rtsp://sdenow:sde12345@192.168.50.119/stream1",  # Replace with your RTSP stream URL
         "-c:v", "copy",                       # Copy the video codec
         "-c:a", "aac",                       # Copy the audio codec
