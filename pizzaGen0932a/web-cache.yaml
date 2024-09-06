@@ -63,9 +63,9 @@ spec:
               subPath: squid.conf
           resources:
             requests:
-              memory: "4Gi"  # Minimum memory required
+              memory: "256Mi"  # Minimum memory required
             limits:
-              memory: "5Gi"    # Maximum memory allowed
+              memory: "512Mi"    # Maximum memory allowed
       volumes:
         - name: squid-cache
           persistentVolumeClaim:
@@ -103,3 +103,6 @@ data:
     acl localnet src 192.168.50.0/24  # Adjust this ACL as needed
     http_access allow localnet
     http_access deny all
+    cache_mem 64 MB  # Limit the amount of memory used for caching
+    maximum_object_size_in_memory 256 KB  # Limit the maximum size of cached objects
+    memory_pools_limit 32 MB  # Limit the memory pools
