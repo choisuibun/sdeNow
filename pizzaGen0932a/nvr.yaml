@@ -4,6 +4,7 @@ metadata:
   name: ffmpeg-rtsp-recorder
   labels:
     app: ffmpeg-rtsp
+  namespace: ffmpeg-space
 spec:
   containers:
     - name: ffmpeg
