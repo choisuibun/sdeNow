@@ -1,7 +1,7 @@
 apiVersion: vmoperator.vmware.com/v1alpha1
 kind: VirtualMachine
 metadata:
-  name: win10.ova
+  name: bis-nvr
   namespace: default
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
