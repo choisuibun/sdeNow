@@ -5,6 +5,20 @@ metadata:
 
 ---
 
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: squid-cache-pvc
+  namespace: squid-namespace
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi  # Adjust the storage size as needed
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,11 +51,11 @@ spec:
             requests:
               memory: "512Mi"  # Minimum memory required
             limits:
-              memory: "1Gi"  # Maximum memory allowed
+              memory: "1Gi"    # Maximum memory allowed
       volumes:
         - name: squid-cache
           persistentVolumeClaim:
-            claimName: squid-cache-pvc  # Use a PVC for persistent storage
+            claimName: squid-cache-pvc
         - name: squid-config
           configMap:
             name: squid-config
@@ -75,4 +89,5 @@ data:
     acl localnet src 192.168.50.0/24  # Adjust this ACL as needed
     http_access allow localnet
     http_access deny all
+    # Add cache settings to limit memory usage
     cache_dir ufs /var/cache/squid 10000 16 256  # Adjust cache size as needed
