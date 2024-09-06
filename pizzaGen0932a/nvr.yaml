@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ffmpeg-space
+  name: ffmpeg-namespace
 ---
 apiVersion: v1
 kind: Pod
@@ -9,7 +9,7 @@ metadata:
   name: ffmpeg-rtsp-recorder
   labels:
     app: ffmpeg-rtsp
-  namespace: ffmpeg-space
+  namespace: ffmpeg-namespace
 spec:
   containers:
     - name: ffmpeg
