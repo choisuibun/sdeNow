@@ -6,7 +6,7 @@ metadata:
 apiVersion: vmoperator.vmware.com/v1alpha1
 kind: VirtualMachine
 metadata:
-  name: BI-NVR
+  name: bi-nvr
   namespace: nvr
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
