@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
         - name: squid
-          image: scbunn/squid:latest  # You can also use another image like sameersbn/squid
+          image: scbunn/squid:latest  # Use the latest Squid image
           ports:
             - containerPort: 3128
           volumeMounts:
@@ -63,9 +63,9 @@ spec:
               subPath: squid.conf
           resources:
             requests:
-              memory: "4Gi"  # Minimum memory required
+              memory: "6Gi"  # Increased minimum memory required
             limits:
-              memory: "5Gi"    # Maximum memory allowed
+              memory: "7Gi"    # Increased maximum memory allowed
       volumes:
         - name: squid-cache
           persistentVolumeClaim:
