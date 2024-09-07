@@ -8,7 +8,7 @@ metadata:
 spec:
   className: best-effort-small
   imageName: ent.box.com/shared/static/6hn0b6i5zir1ndp5io8p7q8mjnao5i7q.ova
-  powerState: poweredOff
+  powerState: poweredOn
   networkInterfaces:
   - networkName: "VM Internal Network"
     ethernetCardType: "vmxnet3"
