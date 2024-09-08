@@ -13,7 +13,7 @@ metadata:
 spec:
   className: best-effort-small
   imageName: 192.168.50.121/downloads/win10.ova
-  powerState: poweredOff
+  powerState: poweredOn
   networkInterfaces:
   - networkName: "VM Internal Network"
     ethernetCardType: "vmxnet3"
