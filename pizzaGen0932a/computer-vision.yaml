@@ -1,0 +1,67 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    kubernetes.io/metadata.name: explore-gitops
+  name: explore-gitops
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: explore-gitops
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups:
+  - extensions
+  resources:
+  - ingresses
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ai-inference
+  name: ai-inference
+  namespace: explore-gitops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-inference
+  template:
+    metadata:
+      labels:
+        app: ai-inference
+    spec:
+      containers:
+      - image: viouservmware/ecs-cv:v3
+        command: ["python3", "-u", "/usr/src/app/app.py"]
+        imagePullPolicy: Always
+        name: ai-inference
+        ports:
+        - containerPort: 7860
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ai-inference
+  name: ai-inference
+  namespace: explore-gitops
+spec:
+  ports:
+  - nodePort: 30333
+    port: 7860
+    protocol: TCP
+    targetPort: 7860
+  selector:
+    app: ai-inference
+  type: NodePort
