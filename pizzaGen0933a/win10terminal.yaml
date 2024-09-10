@@ -10,7 +10,7 @@ spec:
   imageName: 192.168.50.121/downloads/win10.ova
   powerState: poweredOn
   networkInterfaces:
-  - networkName: "VM Internal Network"
+  - networkName: "VM Network"
     ethernetCardType: "vmxnet3"
   vmMetadata:
     configMapName: user-data-windows-1
