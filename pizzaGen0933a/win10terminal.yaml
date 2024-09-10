@@ -7,7 +7,7 @@ metadata:
     vmoperator.vmware.com/image-supported-check: disable
 spec:
   className: best-effort-small
-  imageName: ent.box.com/shared/static/6hn0b6i5zir1ndp5io8p7q8mjnao5i7q.ova
+  imageName: 192.168.50.121/downloads/win10.ova
   powerState: poweredOn
   networkInterfaces:
   - networkName: "VM Internal Network"
