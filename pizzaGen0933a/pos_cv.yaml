@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cv
+---  
+apiVersion: vmoperator.vmware.com/v1alpha1
+kind: VirtualMachine
+metadata:
+  name: POSCV1
+  namespace: cv
+  annotations:
+    vmoperator.vmware.com/image-supported-check: disable
+spec:
+  className: guaranteed-medium
+  imageName: 192.168.50.121/downloads/u1.ova
+  powerState: poweredOn
+  networkInterfaces:
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+---
