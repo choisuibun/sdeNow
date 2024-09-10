@@ -18,3 +18,17 @@ spec:
   - networkName: "VM Network"
     ethernetCardType: "vmxnet3"
 ---
+  vmMetadata:
+    configMapName: user-data-windows-1
+    transport: CloudInit
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: user-data-windows-1
+    namespace: default
+data:
+  user-data: |
+    #ps1
+    Install-WindowsFeature -Name Print-Server
+    Restart-Computer
