@@ -1,49 +1,75 @@
-apiVersion: v1
-kind: Namespace
+apiVersion: esx.vmware.com/v1alpha1
+kind: HostConfiguration
 metadata:
-  name: sdwan
----  
-apiVersion: vmoperator.vmware.com/v1alpha1
-kind: VirtualMachine
-metadata:
-  name: sd-wan-edge1
-  namespace: sdwan
-  annotations:
-    vmoperator.vmware.com/image-supported-check: disable
+  name: vswitch-config
+  namespace: esx-system
 spec:
-  className: guaranteed-medium
-  imageName: ent.box.com/shared/static/qi70qa3fij1t0yqn1f686b3yscbnwiae.ova
-  powerState: poweredOn
-  networkInterfaces:
-  - networkName: "VM Internal Network"
-    ethernetCardType: "vmxnet3"
-  - networkName: "VM Network"
-    ethernetCardType: "vmxnet3"
-  - networkName: "VM Network"
-    ethernetCardType: "vmxnet3"
-  - networkName: "VM Network"
-    ethernetCardType: "vmxnet3"
-  - networkName: "VM Network"
-    ethernetCardType: "vmxnet3"
-  - networkName: "VM Network"
-    ethernetCardType: "vmxnet3"
-  vmMetadata:
-    secretName: my-vm-bootstrap-data
-    transport: CloudInit
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name:      my-vm-bootstrap-data
-  namespace: sdwan
-stringData:
-  user-data: |
-    #cloud-config
-    password: velocloud
-    chpasswd: { expire: False }
-    ssh_pwauth: True
-    velocloud:
-      vce: 
-            vco: velocloud.sst.net.cn
-            activation_code: CPSB-XNEZ-R36H-46DS
-            vco_ignore_cert_errors: true 
+  layertype: Incremental
+  profile: |
+    {
+        "esx": {
+           "system": {
+              "system_time": {
+                "enabled": true,
+                "protocol": "NTP",
+                "ntp_config": {
+                  "server": 
+                  [  
+                    {
+                    "hostname": "0.pool.ntp.org",
+                    "command": "SERVER"
+                    },
+                    {
+                      "hostname": "1.pool.ntp.org",
+                      "command": "SERVER"
+                    }
+                  ]
+                }  
+              }
+            }
+            "network_vss": {
+                "switches": [
+                    {
+                        "name": "vSwitch1",
+                        "policy": {
+                            "nic_teaming": {
+                                "policy": "LOADBALANCE_SRCID",
+                                "notify_switches": true,
+                                "rolling_order": false,
+                                "link_criteria_beacon": "IGNORE",
+                                "active_nics": [
+                           
+                                ],
+                                "standby_nics": []
+                            },
+                            "security": {
+                                "allow_promiscuous": false,
+                                "mac_changes": false,
+                                "forged_transmits": false
+                            },
+                            "traffic_shaping": {
+                                "enabled": false
+                            }
+                        },
+                        "bridge": {
+                            "link_discovery_protocol": {
+                                "protocol": "CDP",
+                                "operation": "LISTEN"
+                            },
+                            "nics": [
+                       
+                            ]
+                        },
+                        "num_ports": 1024,
+                        "mtu": 1500,
+                        "port_groups": [
+                            {
+                                "name": "VM Internal Network",
+                                "vlan_id": 0
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
