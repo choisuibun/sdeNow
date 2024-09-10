@@ -1,31 +1,75 @@
-#Confgure NTP Servers
 apiVersion: esx.vmware.com/v1alpha1
 kind: HostConfiguration
 metadata:
-  name: ntp-sync
+  name: vswitch-config
   namespace: esx-system
 spec:
   layertype: Incremental
   profile: |
     {
-      "esx": {
-        "system": {
-          "system_time": {
-            "enabled": true,
-            "protocol": "NTP",
-            "ntp_config": {
-              "server": [{
-                  "hostname": "0.pool.ntp.org",
-                  "command": "SERVER"
-                },
-                {
-                  "hostname": "1.pool.ntp.org",
-                  "command": "SERVER"
-                }
-              ]
+        "esx": {
+           "system": {
+              "system_time": {
+                "enabled": true,
+                "protocol": "NTP",
+                "ntp_config": {
+                  "server": 
+                  [  
+                    {
+                    "hostname": "0.pool.ntp.org",
+                    "command": "SERVER"
+                    },
+                    {
+                      "hostname": "1.pool.ntp.org",
+                      "command": "SERVER"
+                    }
+                  ]
+                }  
+              }
             }
-          }
+            "network_vss": {
+                "switches": [
+                    {
+                        "name": "vSwitch1",
+                        "policy": {
+                            "nic_teaming": {
+                                "policy": "LOADBALANCE_SRCID",
+                                "notify_switches": true,
+                                "rolling_order": false,
+                                "link_criteria_beacon": "IGNORE",
+                                "active_nics": [
+                           
+                                ],
+                                "standby_nics": []
+                            },
+                            "security": {
+                                "allow_promiscuous": false,
+                                "mac_changes": false,
+                                "forged_transmits": false
+                            },
+                            "traffic_shaping": {
+                                "enabled": false
+                            }
+                        },
+                        "bridge": {
+                            "link_discovery_protocol": {
+                                "protocol": "CDP",
+                                "operation": "LISTEN"
+                            },
+                            "nics": [
+                       
+                            ]
+                        },
+                        "num_ports": 1024,
+                        "mtu": 1500,
+                        "port_groups": [
+                            {
+                                "name": "VM Internal Network",
+                                "vlan_id": 0
+                            }
+                        ]
+                    }
+                ]
+            }
         }
-      }
     }
-
