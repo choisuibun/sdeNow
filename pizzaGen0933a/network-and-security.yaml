@@ -15,7 +15,7 @@ spec:
   imageName: 192.168.50.121/downloads/edge_52_ci.ova
   powerState: poweredOn
   networkInterfaces:
-  - networkName: "VM Internal Network"
+  - networkName: "VM Network"
     ethernetCardType: "vmxnet3"
   - networkName: "VM Network"
     ethernetCardType: "vmxnet3"
