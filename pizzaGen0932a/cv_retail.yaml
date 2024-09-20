@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cv-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cv-app
+  template:
+    metadata:
+      labels:
+        app: cv-app
+    spec:
+      containers:
+      - name: cv_retail
+        image: ghcr.io/choisuibun/cv_retail:v3
+        ports:
+        - containerPort: 8085
+        command: ["python", "object_detection.py", "192.168.50.94"]
+        livenessProbe:
+          httpGet:
+            path: /  # Adjust this path to the health endpoint of your Flask app if necessary
+            port: 8085
+          initialDelaySeconds: 10  # Wait for 10 seconds before performing the first probe
+          periodSeconds: 5          # Check every 5 seconds
+          failureThreshold: 3       # Restart after 3 consecutive failures
+        
+---        
+apiVersion: v1
+kind: Service
+metadata:
+  name: cv-app-service
+spec:
+  selector:
+    app: cv-app
+  ports:
+    - protocol: TCP
+      port: 8085      # Port to expose the service on
+      targetPort: 8085 # Port the container listens on
+  type: LoadBalancer
