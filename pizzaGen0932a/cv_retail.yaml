@@ -1,3 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cv-app
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,4 +46,4 @@ spec:
     - protocol: TCP
       port: 8085      # Port to expose the service on
       targetPort: 8085 # Port the container listens on
-      nodePort: 8085
+      nodePort: 38085
