@@ -20,7 +20,7 @@ spec:
         app: cv-app
     spec:
       containers:
-      - name: cv-retail
+      - name: cv-retailer
         image: ghcr.io/choisuibun/cv_retail:v3
         ports:
         - containerPort: 8085
