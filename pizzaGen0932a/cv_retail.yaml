@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: cv-retail
-        image: ghcr.io/choisuibun/cv_retail:v3
+        image: ghcr.io/choisuibun/cv_retail:v4
         ports:
         - containerPort: 8085
         command: ["python", "object_detection.py", "192.168.50.94"]
