@@ -1,0 +1,14 @@
+apiVersion: vmoperator.vmware.com/v1alpha1
+kind: VirtualMachine
+metadata:
+  name: cv_retail
+  namespace: default
+  annotations:
+    vmoperator.vmware.com/image-supported-check: disable
+spec:
+  className: best-effort-medium
+  imageName: ent.box.com/shared/static/6hn0b6i5zir1ndp5io8p7q8mjnao5i7q.ova
+  powerState: poweredOff
+  networkInterfaces:
+  - networkName: "VM Internal Network"
+    ethernetCardType: "vmxnet3"
