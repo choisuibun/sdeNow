@@ -7,8 +7,8 @@ metadata:
     vmoperator.vmware.com/image-supported-check: disable
 spec:
   className: best-effort-medium
-  imageName: ent.box.com/shared/static/6hn0b6i5zir1ndp5io8p7q8mjnao5i7q.ova
-  powerState: poweredOff
+  imageName: ent.box.com/shared/static/9eyur2evurwa8k1x7bjot6m6klbhi1rd.ova
+  powerState: poweredOn
   networkInterfaces:
   - networkName: "VM Internal Network"
     ethernetCardType: "vmxnet3"
