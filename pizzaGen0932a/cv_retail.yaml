@@ -6,7 +6,7 @@ metadata:
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
 spec:
-  className: best-effort-medium
+  className: guaranteed-medium
   imageName: ent.box.com/shared/static/9eyur2evurwa8k1x7bjot6m6klbhi1rd.ova
   powerState: poweredOn
   networkInterfaces:
