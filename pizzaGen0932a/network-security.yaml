@@ -15,11 +15,11 @@ spec:
   imageName: ent.box.com/shared/static/qi70qa3fij1t0yqn1f686b3yscbnwiae.ova
   powerState: poweredOn
   networkInterfaces:
-  - networkName: "VM Internal Network"
+  - networkName: "VM Inside Net"
     ethernetCardType: "vmxnet3"
   - networkName: "VM Network"
     ethernetCardType: "vmxnet3"
-  - networkName: "VM Network"
+  - networkName: "VM Outside Net"
     ethernetCardType: "vmxnet3"
   - networkName: "VM Network"
     ethernetCardType: "vmxnet3"
@@ -45,5 +45,5 @@ stringData:
     velocloud:
       vce: 
             vco: velocloud.sst.net.cn
-            activation_code: CPSB-XNEZ-R36H-46DS
+            activation_code: 7W5S-VLNM-42DC-46ZE
             vco_ignore_cert_errors: true 
